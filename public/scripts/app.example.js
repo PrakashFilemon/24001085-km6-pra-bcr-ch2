@@ -1,37 +1,54 @@
-class App {
+class Car {
   constructor() {
-    this.clearButton = document.getElementById("clear-btn");
-    this.loadButton = document.getElementById("load-btn");
-    this.carContainerElement = document.getElementById("cars-container");
+    this.carElementResult = document.getElementById("root-value");
+    this.btnSearch = document.getElementById("btn-search");
+    this.drivertype = document.getElementById("tipe-driver");
+    this.date = document.getElementById("tanggal");
+    this.wktJemput = document.getElementById("waktu-jemput");
+    this.jumlahPenumpang = document.getElementById("jmlh-penumpang");
   }
 
   async init() {
     await this.load();
 
-    // Register click listener
-    this.clearButton.onclick = this.clear;
-    this.loadButton.onclick = this.run;
+    this.btnSearch.onclick = this.run.bind(this);
   }
 
-  run = () => {
-    Car.list.forEach((car) => {
-      const node = document.createElement("div");
-      node.innerHTML = car.render();
-      this.carContainerElement.appendChild(node);
-    });
-  };
+  carResult() {
+    let cars = "";
+    component.list
+      .filter((car) => car.available)
+      .forEach((car) => {
+        cars += car.render();
+      });
+    this.carElementResult.innerHTML = cars;
+  }
+
+  run() {
+    let dateTime = new Date(`${this.date.value} ${this.wktJemput.value}`);
+    let cars = "";
+    let driverType = this.drivertype.value === "true";
+    const getCarLength = component.list
+      .filter(
+        (car) =>
+          car.available === driverType &&
+          new Date(car.availableAt) >= dateTime &&
+          car.capacity >= this.jumlahPenumpang.value
+      )
+      .map((car) => {
+        cars += car.render();
+        this.carElementResult.innerHTML = cars;
+      });
+    console.log(getCarLength.length);
+
+    if (parseInt(this.jumlahPenumpang.value) === 0) {
+      this.carElementResult.innerHTML = "";
+      return;
+    }
+  }
 
   async load() {
     const cars = await Binar.listCars();
-    Car.init(cars);
+    component.init(cars);
   }
-
-  clear = () => {
-    let child = this.carContainerElement.firstElementChild;
-
-    while (child) {
-      child.remove();
-      child = this.carContainerElement.firstElementChild;
-    }
-  };
 }

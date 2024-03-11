@@ -12,6 +12,6 @@ console.log(params);
 /*
  * Contoh penggunaan DOM di dalam class
  * */
-const app = new App();
+const car = new Car();
 
-app.init().then(app.run);
+car.init();

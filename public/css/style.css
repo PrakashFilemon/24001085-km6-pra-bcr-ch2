@@ -1,0 +1,65 @@
+.carousel-caption {
+  color: black;
+  font-size: medium;
+  text-align: right;
+}
+.carousel-control-prev-icon {
+  background-image: url(../img/Left\ button.png);
+  width: 56px;
+  height: 68px;
+}
+.carousel-control-next-icon {
+  background-image: url(../img/Right\ button.png);
+  width: 56px;
+  height: 68px;
+}
+.jumbotron-item {
+  padding: 20px;
+  text-align: center;
+}
+
+.jumbotron-item h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+}
+
+.jumbotron-item p {
+  font-size: 16px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+  .jumbotron {
+    padding: 10px;
+  }
+
+  .jumbotron-item h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .jumbotron-item p {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-caption {
+    height: auto;
+  }
+
+  .carousel-caption {
+    padding: 15px;
+  }
+}
+
+.root-value {
+  margin-right: 20px; /* Menambahkan margin kanan pada setiap kartu */
+}
+.card {
+  margin-bottom: 20px; /* Menambahkan margin bawah pada setiap kartu */
+}
